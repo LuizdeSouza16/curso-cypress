@@ -1,8 +1,9 @@
 /// <reference types = "cypress" />
 
 describe('Cypress Basics', () => {
-    it('Should visit a page and assert title', () => {
+    it.only('Should visit a page and assert title', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
+
         cy.title()
             .should('be.equal', 'Campo de Treinamento') 
             .and('contain', 'Campo')
@@ -14,7 +15,7 @@ describe('Cypress Basics', () => {
 
    
 
-    it.only('Should find and interact with an element', () => {
+    it('Should find and interact with an element', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
         cy.get('#buttonSimple')
             .click()
@@ -24,3 +25,5 @@ describe('Cypress Basics', () => {
 
 
 })
+
+//cy.debug() and cy.pause()
