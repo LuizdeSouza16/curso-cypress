@@ -6,7 +6,7 @@ it('A external test..', () => {
 
 describe('Should group tests ..', () => {
     describe('Should group more specific tesst..', () => {
-        it.skip('A specific test...', () => {
+        it('A specific test...', () => {
 
         })
     })
@@ -16,7 +16,7 @@ describe('Should group tests ..', () => {
     })
     
     
-    it.skip('A internal test..', () => {
+    it('A internal test..', () => {
 
     })
 })
