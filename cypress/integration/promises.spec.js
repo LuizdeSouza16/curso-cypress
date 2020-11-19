@@ -10,12 +10,10 @@ const getSomething = () => {
 }
 
 
-const system = () => {
+const system = async () => {
     console.log('init')
-    const prom = getSomething()
-    prom.then(some => {
-        console.log(`Something is ${some}`)
-    })
+    const some = await getSomething
+    console.log(`Something is ${some}`)
     console.log('end')
     
 }
