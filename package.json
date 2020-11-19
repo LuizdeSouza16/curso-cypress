@@ -12,8 +12,8 @@
     "url": "git+https://github.com/LuizdeSouza16/curso-cypress.git"
   },
   "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "author": "LuizdeSouza16",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/LuizdeSouza16/curso-cypress/issues"
   },
