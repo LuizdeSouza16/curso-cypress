@@ -42,10 +42,13 @@ describe('Waits...', () => {
         cy.get('#lista li span', {timeout: 6000})
             .should('have.length', 1)
         
+    })
 
-
-
-
+    it.only('Click retry', () => {
+        cy.get('#buttonCount')
+            .click()
+            .click()
+            .should('have.value', '111')
     })
 
 })
