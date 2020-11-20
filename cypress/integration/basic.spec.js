@@ -8,8 +8,11 @@ describe('Cypress Basics', () => {
             .should('be.equal', 'Campo de Treinamento') 
             .and('contain', 'Campo')
         
-        //TODO Escrever title no console
-        //TODO Escrever o title em um campo de testo
+        
+        cy.title().then(title => {
+            console.log(title)
+        })
+        //TODO Escrever o title em um campo de texto
 
     })
 

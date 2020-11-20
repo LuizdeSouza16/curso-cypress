@@ -51,4 +51,12 @@ describe('Waits...', () => {
             .should('have.value', '111')
     })
 
+    it.only('Should vs then', () => {
+        cy.get('#buttonListDOM').then($el => {
+            
+            expect($el).to.have.length(1)
+            cy.get('#buttonList')
+        })
+    })
+
 })
