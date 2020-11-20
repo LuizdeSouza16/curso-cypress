@@ -49,8 +49,18 @@ describe('Work with basic elements' , ()=> {
         cy.get("[name='formSexo']").should('have.length', 2)
     })
 
-    it.only('Checkbox', () => {
+    it('Checkbox', () => {
         cy.get('[name=formComidaFavorita]').click({multiple:true})
         cy.get('#formComidaPizza').click().should('not.be.checked')
+    })
+
+    it.only('Combobox', ()=> {
+        cy.get('#formEscolaridade')
+            .select('2o grau completo')
+            .should('have.value', "2graucomp")
+
+            cy.get('#formEscolaridade')
+            .select('mestrado')
+            .should('have.value', "mestrado")
     })
 })
