@@ -54,7 +54,7 @@ describe('Work with basic elements' , ()=> {
         cy.get('#formComidaPizza').click().should('not.be.checked')
     })
 
-    it.only('Combobox', ()=> {
+    it('Combobox', ()=> {
         cy.get('#formEscolaridade')
             .select('2o grau completo')
             .should('have.value', "2graucomp")
@@ -62,5 +62,14 @@ describe('Work with basic elements' , ()=> {
             cy.get('#formEscolaridade')
             .select('mestrado')
             .should('have.value', "mestrado")
+    
+        //TODO validar as opcções do campo    
+    })
+
+    it('Combo multiplo', ()=> {
+        cy.get('#formEsportes')
+            .select(['natacao', 'Corrida', 'nada'])
+
+            //TODO validar opções do combo multiplo
     })
 })
