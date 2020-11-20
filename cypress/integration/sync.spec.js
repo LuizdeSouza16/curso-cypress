@@ -16,4 +16,9 @@ describe('Waits...', () => {
         cy.get("#novoCampo").should('exist')
     })
 
+    it.only('Deve fazer retrys', () => {
+        cy.get('#buttonDelay').click()
+        cy.get("#novoCampo").should('not.exist').should('exist')
+    })
+
 })
