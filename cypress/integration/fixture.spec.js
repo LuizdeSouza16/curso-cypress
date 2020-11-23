@@ -15,6 +15,4 @@ describe('Fixture tests', () => {
         })
         
     })
-
-
 })
