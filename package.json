@@ -19,6 +19,7 @@
   },
   "homepage": "https://github.com/LuizdeSouza16/curso-cypress#readme",
   "dependencies": {
-    "cypress": "^3.6.0"
+    "cypress": "^3.6.0",
+    "cypress-xpath": "^1.4.0"
   }
 }

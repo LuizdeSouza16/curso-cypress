@@ -12,4 +12,8 @@ describe('Locators', () => {
         cy.get("#tabelaUsuarios tr:contains('Doutorado'):eq(0) td:eq(6)")
     })
 
+    it('using xpath',() => {
+        cy.xpath('//input')
+    })
+
 })
