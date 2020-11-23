@@ -31,8 +31,6 @@ describe('Cypress Basics', () => {
 
     })
 
-   
-
     it('Should find and interact with an element', () => {
         cy.visit('https://wcaquino.me/cypress/componentes.html')
         cy.get('#buttonSimple')
@@ -40,8 +38,6 @@ describe('Cypress Basics', () => {
             .should('have.value', 'Obrigado!')
 
     })
-
-
 })
 
 //cy.debug() and cy.pause()
