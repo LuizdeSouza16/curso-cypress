@@ -10,12 +10,12 @@ describe('Should test at functional test..', () => {
         cy.get('[data-test=menu-settings]').click()
         cy.get('[href="/reset"]').click()
         cy.get('.toast-message').should('contain', 'Dados resetados com sucesso!')
+        cy.get('[data-test=menu-settings]').click()
+        cy.get('[href="/contas"]').click()
 
     }) 
 
     it('Should add a account', () => {
-        cy.get('[data-test=menu-settings]').click()
-        cy.get('[href="/contas"]').click()
         cy.get('.form-control').type('Conta de teste do cypress')
         cy.get('.btn').click()
         cy.get('.toast-message').should('contain', 'Conta inserida com sucesso!')
@@ -23,25 +23,22 @@ describe('Should test at functional test..', () => {
     })
 
     it('Should delete a account', () => {
-        cy.get('[data-test=menu-settings]').click()
-        cy.get('[href="/contas"]').click()
         cy.xpath("//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-trash-alt']").click({timeout: 6000})
         cy.get('.toast-message').should('contain', 'Conta excluída com sucesso!')
     })
 
     it('Should insert a account with a existent name', () => {
-        cy.get('[data-test=menu-settings]').click()
-        cy.get('[href="/contas"]').click()
         cy.get('.form-control').type('Conta mesmo nome')
         cy.get('.btn').click()
         cy.get('.toast-message').should('contain', 'Erro: Error: Request failed with status code 400')
     })
 
     it('Should edit a account', () => {
-        cy.get('[data-test=menu-settings]').click()
-        cy.get('[href="/contas"]').click()
         cy.xpath("//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-edit']").click()
-        cy.get('.form-control').clear().type('Conta nome diferente')
+        cy.get('.form-control')
+            .clear()
+            .type('Conta nome diferente')
+        
         cy.get('.btn').click()
         cy.get('.toast-message').should('contain', 'Conta atualizada com sucesso!')
     })
