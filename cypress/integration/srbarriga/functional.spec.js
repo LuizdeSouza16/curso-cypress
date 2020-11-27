@@ -1,18 +1,18 @@
 /// <reference types = "cypress" />
 
 import loc from '../../support/locators'
+import '../../support/commandsContas'
+
 
 describe('Should test at functional test..', () => {
     beforeEach(() =>{
         cy.login("luiz@luiz.com", "12345678")
         cy.resetApp()
-        cy.get(loc.MENU.SETTINGS).click()
-        cy.get(loc.MENU.CONTAS).click()
+        cy.acessarMenuConta()
     }) 
 
     it('Should add a account', () => {
-        cy.get(loc.CONTAS.INP_NOME).type('Conta de teste do cypress')
-        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.inserirConta('Conta de teste')
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso!')
         
     })
@@ -23,8 +23,7 @@ describe('Should test at functional test..', () => {
     })
 
     it('Should insert a account with a existent name', () => {
-        cy.get(loc.CONTAS.INP_NOME).type('Conta mesmo nome')
-        cy.get(loc.CONTAS.BTN_SALVAR).click()
+        cy.inserirConta('Conta mesmo nome')
         cy.get(loc.MESSAGE).should('contain', 'Erro: Error: Request failed with status code 400')
     })
 
