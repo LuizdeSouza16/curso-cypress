@@ -14,7 +14,10 @@ const locators = {
     }, 
 
     CONTAS: {
-        INP_NOME :'[data-test=nome]'
+        INP_NOME :'[data-test=nome]',
+        XP_BTN_ALTERAR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-edit']",
+        BTN_SALVAR: '.btn',
+        XP_BTN_EXCLUIR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-trash-alt']",
     }
 }
 
