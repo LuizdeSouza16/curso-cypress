@@ -12,13 +12,13 @@ describe('Should test at backend test..', () => {
     }) 
 
     beforeEach(() => {
-        cy.resetRest()
+        cy.resetRest(token)
     })
 
     it('Should a create an account', () => {
        
     cy.request({
-        url: 'https://barrigarest.wcaquino.me/contas',
+        url: '/contas',
         method: 'POST',
         headers: {Authorization: `JWT ${token}`},
         body: {
@@ -34,5 +34,3 @@ describe('Should test at backend test..', () => {
     })
 
 })
-
-
