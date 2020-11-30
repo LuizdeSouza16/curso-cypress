@@ -31,14 +31,16 @@ const locators = {
         INP_VALOR: '[data-test=valor]',
         INP_ENVOLVIDO: '[data-test=envolvido]',
         COMBO_CONTA: '[data-test=conta]',
-        BTN_STATUS: 'data-test=status',
+        BTN_STATUS: '[data-test=status]',
         BTN_SALVAR: '.btn-primary'
     },
     SALDO: {
         FN_XP_SALDO_CONTA: (nome) => `//td[contains(., '${nome}')]/../td[2]`
     },
     EXTRATO : {
-        FN_XP_REMOVER_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`
+        FN_XP_REMOVER_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`,
+        FN_XP_ALTERAR_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='fas fa-edit']`
+
     }
 }
 
