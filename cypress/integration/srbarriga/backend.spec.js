@@ -12,7 +12,7 @@ describe('Should test at backend test..', () => {
     }) 
 
     beforeEach(() => {
-        
+        cy.resetRest()
     })
 
     it('Should a create an account', () => {
@@ -27,10 +27,12 @@ describe('Should test at backend test..', () => {
     }).as('response')
 
     cy.get('@response').then(res => {
-    expect(res.status).to.be.equal(201)
-    expect(res.body).to.have.property('id')
-    expect(res.body).to.have.property('nome','Conta via rest')
-    })
+        expect(res.status).to.be.equal(201)
+        expect(res.body).to.have.property('id')
+        expect(res.body).to.have.property('nome','Conta via rest')
+        })
     })
 
 })
+
+
