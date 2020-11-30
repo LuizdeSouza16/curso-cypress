@@ -5,17 +5,19 @@ import '../../support/commandsContas'
 
 
 describe('Should test at functional test..', () => {
-    beforeEach(() =>{
+    before(() =>{
         cy.login("luiz@luiz.com", "12345678")
-        cy.resetApp()
-        
     }) 
+    
+    beforeEach(() => {
+        cy.resetApp()
+        cy.get(loc.MENU.HOME).click()
+    })
 
     it('Should add a account', () => {
         cy.acessarMenuConta()
         cy.inserirConta('Conta de teste')
         cy.get(loc.MESSAGE).should('contain', 'Conta inserida com sucesso!')
-        
     })
 
     it('Should delete a account', () => {
@@ -46,6 +48,7 @@ describe('Should test at functional test..', () => {
         cy.get(loc.MOVIMENTACAO.INP_DESCRICAO).type("Testando inserção da movimentação")
         cy.get(loc.MOVIMENTACAO.INP_VALOR).type("600")
         cy.get(loc.MOVIMENTACAO.INP_ENVOLVIDO).type("Bira rico")
+        cy.get(loc.MOVIMENTACAO.COMBO_CONTA).select('Conta para movimentacoes')
         cy.get(loc.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'Movimentação inserida com sucesso!')
     })
@@ -55,9 +58,9 @@ describe('Should test at functional test..', () => {
         cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain' , '534,00')
     })
 
-    it.only('Should remove a transaction' , () => {
+    it('Should remove a transaction' , () => {
         cy.get(loc.MENU.STATUS).click()
-        cy.xpath(loc.EXTRATO.FN_XP_REMOVER_TRANSACAO('Movimentacao 1, calculo saldo')).click()
+        cy.xpath(loc.EXTRATO.FN_XP_REMOVER_TRANSACAO('Movimentacao para exclusao')).click()
         cy.get(loc.MESSAGE).should('contain', 'Movimentação removida com sucesso!')
     })
 
