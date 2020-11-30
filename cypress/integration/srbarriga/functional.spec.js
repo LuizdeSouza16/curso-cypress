@@ -41,13 +41,18 @@ describe('Should test at functional test..', () => {
         cy.get(loc.MESSAGE).should('contain', 'Conta atualizada com sucesso!')
     })
 
-    it.only('Should a insert a movimentation', () => {
+    it('Should a insert a movimentation', () => {
         cy.get(loc.MENU.MOVIMENTACAO).click()
         cy.get(loc.MOVIMENTACAO.INP_DESCRICAO).type("Testando inserção da movimentação")
         cy.get(loc.MOVIMENTACAO.INP_VALOR).type("600")
         cy.get(loc.MOVIMENTACAO.INP_ENVOLVIDO).type("Bira rico")
         cy.get(loc.MOVIMENTACAO.BTN_SALVAR).click()
         cy.get(loc.MESSAGE).should('contain', 'Movimentação inserida com sucesso!')
+    })
+
+    it.only('Shoud get balance', () => {
+        cy.get(loc.MENU.HOME).click()
+        cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain' , '534,00')
     })
 
 })

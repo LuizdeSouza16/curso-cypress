@@ -12,6 +12,8 @@ const locators = {
         RESET: '[href="/reset"]',
         CONTAS: '[href="/contas"]',
         MOVIMENTACAO: '[data-test=menu-movimentacao]',
+        STATUS: '[data-test=menu-extrato]',
+        HOME: '[data-test=menu-home]',
     }, 
 
     CONTAS: {
@@ -31,7 +33,10 @@ const locators = {
         COMBO_CONTA: '[data-test=conta]',
         BTN_STATUS: 'data-test=status',
         BTN_SALVAR: '.btn-primary'
-    }
+    },
+    SALDO: {
+        FN_XP_SALDO_CONTA: (nome) => `//td[contains(., '${nome}')]/../td[2]`
+    },
 }
 
 
