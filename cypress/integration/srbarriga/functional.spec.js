@@ -20,7 +20,7 @@ describe('Should test at functional test..', () => {
 
     it('Should delete a account', () => {
         cy.acessarMenuConta()
-        cy.xpath(loc.CONTAS.XP_BTN_EXCLUIR).click({timeout: 6000})
+        cy.xpath(loc.CONTAS.FN_XP_BTN_EXCLUIR('Conta mesmo nome')).click({timeout: 6000})
         cy.get(loc.MESSAGE).should('contain', 'Conta excluída com sucesso!')
     })
 
@@ -32,7 +32,7 @@ describe('Should test at functional test..', () => {
 
     it('Should edit a account', () => {
         cy.acessarMenuConta()
-        cy.xpath(loc.CONTAS.XP_BTN_ALTERAR).click()
+        cy.xpath(loc.CONTAS.FN_XP_CONTA_ALTERAR('Conta mesmo nome')).click()
         cy.get(loc.CONTAS.INP_NOME)
             .clear()
             .type('Conta nome diferente')
@@ -50,9 +50,15 @@ describe('Should test at functional test..', () => {
         cy.get(loc.MESSAGE).should('contain', 'Movimentação inserida com sucesso!')
     })
 
-    it.only('Shoud get balance', () => {
+    it('Shoud get balance', () => {
         cy.get(loc.MENU.HOME).click()
         cy.xpath(loc.SALDO.FN_XP_SALDO_CONTA('Conta para saldo')).should('contain' , '534,00')
+    })
+
+    it.only('Should remove a transaction' , () => {
+        cy.get(loc.MENU.STATUS).click()
+        cy.xpath(loc.EXTRATO.FN_XP_REMOVER_TRANSACAO('Movimentacao 1, calculo saldo')).click()
+        cy.get(loc.MESSAGE).should('contain', 'Movimentação removida com sucesso!')
     })
 
 })

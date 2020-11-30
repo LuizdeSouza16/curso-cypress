@@ -18,9 +18,9 @@ const locators = {
 
     CONTAS: {
         INP_NOME :'[data-test=nome]',
-        XP_BTN_ALTERAR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-edit']",
+        FN_XP_CONTA_ALTERAR: (nome) => `//table//td[contains(., '${nome}')]/..//i[@class='far fa-edit']`,
         BTN_SALVAR: '.btn',
-        XP_BTN_EXCLUIR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-trash-alt']",
+        FN_XP_BTN_EXCLUIR: (nome) => `//table//td[contains(., '${nome}')]/..//i[@class='far fa-trash-alt']`,
     },
     MOVIMENTACAO: {
         BTN_RECEITA: '[data-test=tipo-receita]',
@@ -37,6 +37,9 @@ const locators = {
     SALDO: {
         FN_XP_SALDO_CONTA: (nome) => `//td[contains(., '${nome}')]/../td[2]`
     },
+    EXTRATO : {
+        FN_XP_REMOVER_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`
+    }
 }
 
 
