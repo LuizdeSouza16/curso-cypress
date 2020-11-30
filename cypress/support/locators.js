@@ -12,13 +12,15 @@ const locators = {
         RESET: '[href="/reset"]',
         CONTAS: '[href="/contas"]',
         MOVIMENTACAO: '[data-test=menu-movimentacao]',
+        STATUS: '[data-test=menu-extrato]',
+        HOME: '[data-test=menu-home]',
     }, 
 
     CONTAS: {
         INP_NOME :'[data-test=nome]',
-        XP_BTN_ALTERAR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-edit']",
+        FN_XP_CONTA_ALTERAR: (nome) => `//table//td[contains(., '${nome}')]/..//i[@class='far fa-edit']`,
         BTN_SALVAR: '.btn',
-        XP_BTN_EXCLUIR: "//table//td[contains(., 'Conta mesmo nome')]/..//i[@class='far fa-trash-alt']",
+        FN_XP_BTN_EXCLUIR: (nome) => `//table//td[contains(., '${nome}')]/..//i[@class='far fa-trash-alt']`,
     },
     MOVIMENTACAO: {
         BTN_RECEITA: '[data-test=tipo-receita]',
@@ -29,8 +31,16 @@ const locators = {
         INP_VALOR: '[data-test=valor]',
         INP_ENVOLVIDO: '[data-test=envolvido]',
         COMBO_CONTA: '[data-test=conta]',
-        BTN_STATUS: 'data-test=status',
+        BTN_STATUS: '[data-test=status]',
         BTN_SALVAR: '.btn-primary'
+    },
+    SALDO: {
+        FN_XP_SALDO_CONTA: (nome) => `//td[contains(., '${nome}')]/../td[2]`
+    },
+    EXTRATO : {
+        FN_XP_REMOVER_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='far fa-trash-alt']`,
+        FN_XP_ALTERAR_TRANSACAO: (conta) => `//span[contains(.,'${conta}')]/../../..//i[@class='fas fa-edit']`
+
     }
 }
 

@@ -42,7 +42,6 @@ Cypress.Commands.add('login', (usuario, senha) => {
 })
 
 Cypress.Commands.add('resetApp', () => {
-  cy.visit('http://barrigareact.wcaquino.me/')
   cy.get(loc.MENU.SETTINGS).click()
   cy.get(loc.MENU.RESET).click()
   cy.get(loc.MESSAGE).should('contain', 'Dados resetados com sucesso!')
