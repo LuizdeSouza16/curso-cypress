@@ -33,8 +33,6 @@ describe('Should test at backend test..', () => {
     })
 
     it('Should update an account', () => {
-        
-
         cy.request({
             url: '/contas',
             method: 'GET',
@@ -45,7 +43,7 @@ describe('Should test at backend test..', () => {
 
         }).then(res => {
             cy.request({
-                url: `https://barrigarest.wcaquino.me/contas/${res.body[0].id}`,
+                url: `/contas/${res.body[0].id}`,
                 method: 'PUT',
                 headers: {Authorization: `JWT ${token}`},
                 body: {
@@ -57,6 +55,21 @@ describe('Should test at backend test..', () => {
        cy.get('@response').its('status').should('be.equal', 200)
     })
     
+    it('Should not a create an account with same name', () => {
+        cy.request({
+            url: '/contas',
+            method: 'POST',
+            headers: {Authorization: `JWT ${token}`},
+            body: {
+                nome: "Conta mesmo nome"
+            },
+            failOnStatusCode: false
+        }).as('response')
 
-
+        cy.get('@response').then(res => {
+            console.log(res)
+            expect(res.status).to.be.equal(400)
+            expect(res.body.error).to.have.equal('Já existe uma conta com esse nome!')
+        })
+    })
 })
