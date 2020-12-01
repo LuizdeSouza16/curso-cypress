@@ -14,7 +14,6 @@ describe('Should test at backend test..', () => {
         cy.request({
             url: '/contas',
             method: 'POST',
-            
             body: {
                 nome: "Conta via rest"
             },
@@ -32,14 +31,12 @@ describe('Should test at backend test..', () => {
             cy.request({
                 url: `/contas/${contaId}`,
                 method: 'PUT',
-                //
                 body: {
                     nome: 'Conta alterada via rest'
                 }
             }).as('response')
         })
         
-
        cy.get('@response').its('status').should('be.equal', 200)
     })
     
@@ -63,8 +60,7 @@ describe('Should test at backend test..', () => {
         cy.getAccountByName('Conta para alterar').then(contaId => {
             cy.request({
                 method:  'POST',
-                url: '/transacoes',
-                
+                url: '/transacoes',     
                 body: {
                     conta_id: contaId,
                     data_pagamento: Cypress.moment().add({days: 1}).format('DD/MM/YYYY'),
@@ -86,14 +82,12 @@ describe('Should test at backend test..', () => {
         
             cy.request({
                 method: 'GET',
-                url: 'transacoes',
-                
+                url: 'transacoes',  
                 qs: {descricao: 'Movimentacao 1, calculo saldo'}
             }).then(res => {
                 cy.request({
                     url: `/transacoes/${res.body[0].id}`,
-                    method: 'PUT',
-                    
+                    method: 'PUT', 
                     body: {
                         status: true,
                         data_transacao: Cypress.moment(res.body[0].dataTransacao).format("DD/MM/YYYY"),
@@ -109,7 +103,6 @@ describe('Should test at backend test..', () => {
             cy.request({
                 url: '/saldo',
                 method: 'GET',
-                
             }).then(res => {
                 let saldoConta = null
                 res.body.forEach(c => {
@@ -124,14 +117,11 @@ describe('Should test at backend test..', () => {
         cy.request({
             method: 'GET',
             url: 'transacoes',
-            
             qs: {descricao: 'Movimentacao para exclusao'}
         }).then(res => {
             cy.request({
                 url: `/transacoes/${res.body[0].id}`,
                 method: 'DELETE',
-                
-
             }).its('status').should('be.equal', 204)
         })
     })
