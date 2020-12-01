@@ -4,9 +4,6 @@ describe('Should test at backend test..', () => {
     let token
     before(() =>{
         cy.getToken('luiz@luiz.com', '12345678')
-            .then(tkn => {
-                token = tkn
-            })
     }) 
 
     beforeEach(() => {
@@ -50,7 +47,6 @@ describe('Should test at backend test..', () => {
         cy.request({
             url: '/contas',
             method: 'POST',
-            
             body: {
                 nome: "Conta mesmo nome"
             },
