@@ -46,3 +46,57 @@ Cypress.Commands.add('resetApp', () => {
   cy.get(loc.MENU.RESET).click()
   cy.get(loc.MESSAGE).should('contain', 'Dados resetados com sucesso!')
 })
+
+Cypress.Commands.add('getToken', (usuario, senha) => {
+  cy.request({
+    method: 'POST',
+    url: '/signin',
+    body: {
+        email: usuario,
+        redirecionar: false,
+        senha: senha
+    }
+    
+  }).its('body.token').should('not.be.empty')
+  .then(token => {
+    Cypress.env('token', token)
+    return token
+  })
+})
+
+Cypress.Commands.add('resetRest', (token) => {
+    cy.request({
+      method: 'GET',
+      url: '/reset',
+      headers: {Authorization: `JWT ${token}`},
+    }).its('status').should('be.equal', 200)
+})
+
+Cypress.Commands.add('getAccountByName', name => {
+  cy.getToken("luiz@luiz.com", "12345678").then(token => {
+    cy.request({
+      url: '/contas',
+      method: 'GET',
+      headers: {Authorization: `JWT ${token}`},
+      qs: {
+          nome: name,
+      }
+    }).then(res => {
+      return res.body[0].id
+    })
+  
+  })
+  
+})
+
+Cypress.Commands.overwrite('request', (originalFunction, ...options) => {
+  if(options.length === 1) {
+    if(Cypress.env('token')) {
+      options[0].headers =  {
+        Authorization: `JWT ${Cypress.env('token')}`
+      }
+    }
+  }
+  
+  return originalFunction(...options)
+})
