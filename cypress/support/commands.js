@@ -70,3 +70,20 @@ Cypress.Commands.add('resetRest', (token) => {
       headers: {Authorization: `JWT ${token}`},
     }).its('status').should('be.equal', 200)
 })
+
+Cypress.Commands.add('getAccountByName', name => {
+  cy.getToken("luiz@luiz.com", "12345678").then(token => {
+    cy.request({
+      url: '/contas',
+      method: 'GET',
+      headers: {Authorization: `JWT ${token}`},
+      qs: {
+          nome: name,
+      }
+    }).then(res => {
+      return res.body[0].id
+    })
+  
+  })
+  
+})

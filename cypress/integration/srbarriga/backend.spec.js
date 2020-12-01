@@ -1,6 +1,4 @@
 /// <reference types = "cypress" />
-
-
 describe('Should test at backend test..', () => {
 
     let token
@@ -72,4 +70,27 @@ describe('Should test at backend test..', () => {
             expect(res.body.error).to.have.equal('Já existe uma conta com esse nome!')
         })
     })
+   it.only('Should a insert a transaction', () => {
+        cy.getAccountByName('Conta para alterar').then(contaId => {
+            cy.request({
+                method:  'POST',
+                url: '/transacoes',
+                headers: {Authorization: `JWT ${token}`},
+                body: {
+                    conta_id: contaId,
+                    data_pagamento: Cypress.moment().add({days: 1}).format('DD/MM/YYYY'),
+                    data_transacao: Cypress.moment().format('DD/MM/YYYY'),
+                    descricao: "desc",
+                    envolvido: "qe",
+                    status: true,
+                    tipo: "REC",
+                    valor: "4445",
+                }
+            }).as('response')
+        })
+
+        cy.get('@response').its('status').should('be.equal', 201)
+        cy.get('@response').its('body.id').should('exist')
+    })
+
 })
